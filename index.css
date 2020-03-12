@@ -2,6 +2,47 @@ html {
     scroll-behavior: smooth;
 }
 
+.app-name{
+    float: left;
+    margin: auto;
+    font-size: 1.4em;
+}
+
+.nav {
+    text-align: right;
+    height: 70px;
+    line-height: 70px;
+    border-bottom: 1px solid rgb(128, 82,128);
+    width: 100%;
+}
+
+.menu {
+    margin: 0 30px 0 0;
+    text-align: center;
+    display: none;
+}
+
+.menu a {
+    clear: right;
+    text-decoration: none;
+    line-height: 50px;
+    display: block;
+    border-bottom: 1px solid rgb(128, 82,128);
+    margin: 0;
+    background-color: lightgray;
+    z-index: 9999;
+    position: relative;
+    width: 96vw;
+}
+
+#toggle {
+    display: none;
+}
+
+#toggle:checked+.menu {
+    display: block;
+}
+
 @media screen and (min-width: 480px) {}
 
 @media screen and (min-width: 768px) {}
