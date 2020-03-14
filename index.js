@@ -13,6 +13,7 @@ var player;
 function onYouTubeIframeAPIReady() {
     let dims = viewportSize();
     player = new YT.Player('player', {
+        // Height divided by 2 to equate to 2:1 aspect ratio
         height: `${dims.width/2}`,
         width: `${dims.width}`,
         videoId: 'M7lc1UVf-VE',
@@ -51,6 +52,18 @@ function viewportSize(){
 	
 	var dims = { width: test.offsetWidth, height: test.offsetHeight };
 	document.documentElement.removeChild( test );
+	if (dims.width < 480){
+        return dims;
+    }
+    else if(dims.width < 768){
+        dims.width = dims.width/1.5;
+        dims.height = dims.height/1.5;
+        return dims;
+    }
+    else{
+        dims.width = 640;
+        dims.height = 390;
+        return dims;
+    }
 	
-	return dims;
 }
