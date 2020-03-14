@@ -11,10 +11,10 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //    after the API code downloads.
 var player;
 function onYouTubeIframeAPIReady() {
-    let dims = viewportSize();
+    let dims = determineVideoSize();
     player = new YT.Player('player', {
         // Height divided by 2 to equate to 2:1 aspect ratio
-        height: `${dims.width/2}`,
+        height: `${dims.width / 2}`,
         width: `${dims.width}`,
         videoId: 'M7lc1UVf-VE',
         events: {
@@ -44,26 +44,29 @@ function stopVideo() {
 }
 
 // This function returns the width and height of the viewport
-function viewportSize(){
-	var test = document.createElement( "div" );
+function determineVideoSize() {
+    var test = document.createElement("div");
 
-	test.style.cssText = "position: fixed;top: 0;left: 0;bottom: 0;right: 0;";
-	document.documentElement.insertBefore( test, document.documentElement.firstChild );
-	
-	var dims = { width: test.offsetWidth, height: test.offsetHeight };
-	document.documentElement.removeChild( test );
-	if (dims.width < 480){
+    test.style.cssText = "position: fixed;top: 0;left: 0;bottom: 0;right: 0;";
+    document.documentElement.insertBefore(test, document.documentElement.firstChild);
+
+    var dims = { width: test.offsetWidth, height: test.offsetHeight };
+    document.documentElement.removeChild(test);
+    // Determining the video size based on mobile viewport
+    if (dims.width < 480) {
         return dims;
     }
-    else if(dims.width < 768){
-        dims.width = dims.width/1.5;
-        dims.height = dims.height/1.5;
+    // Determining the video size based on tablet viewport
+    else if (dims.width < 768) {
+        dims.width = dims.width / 1.5;
+        dims.height = dims.height / 1.5;
         return dims;
     }
-    else{
+    // Determining the video size based on desktop viewport
+    else {
         dims.width = 640;
         dims.height = 390;
         return dims;
     }
-	
+
 }
