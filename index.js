@@ -1,47 +1,11 @@
 `use strict`
 
+const apiKey = 'AIzaSyCd-3t5NPb4Zve-TPyz8mR9CbGXBnplFJ4';
+const searchURL = 'https://www.googleapis.com/youtube/v3/search';
 
-var tag = document.createElement('script');
+let vidId = '1';
 
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-    let dims = determineVideoSize();
-    player = new YT.Player('player', {
-        // Height divided by 2 to equate to 2:1 aspect ratio
-        height: `${dims.width / 2}`,
-        width: `${dims.width}`,
-        videoId: 'M7lc1UVf-VE',
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
-}
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        done = true;
-    }
-}
-function stopVideo() {
-    player.stopVideo();
-}
 
 // This function returns the width and height of the viewport
 function determineVideoSize() {
@@ -70,3 +34,103 @@ function determineVideoSize() {
     }
 
 }
+
+function displayResults(responseJson) {
+    console.log(responseJson);
+    vidId = responseJson.items[0].id.videoId.toString();
+    alert(vidId);
+    loadVideo(vidId);
+    $('#player').removeClass('hidden');
+};
+
+function formatQueryParams(params) {
+    const queryItems = Object.keys(params)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+    return queryItems.join('&');
+}
+
+function getYouTubeVideoId(query, maxResults) {
+    const params = {
+        key: apiKey,
+        q: query,
+        part: 'snippet',
+        maxResults,
+        type: 'video'
+    };
+    const queryString = formatQueryParams(params)
+    const url = searchURL + '?' + queryString;
+
+    console.log(url);
+
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then(responseJson => displayResults(responseJson))
+        .catch(err => {
+            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+        });
+}
+
+
+function watchForm() {
+    $('form').submit(event => {
+        event.preventDefault();
+        const searchArtist = $('#js-search-artist').val();
+        getYouTubeVideoId(searchArtist, 1);
+    });
+}
+
+function loadVideo (id){
+    player.loadVideoById({videoId:id,
+        startSeconds:0,
+        endSeconds:500});
+}
+
+
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+    let dims = determineVideoSize();
+    player = new YT.Player('player', {
+        // Height divided by 2 to equate to 2:1 aspect ratio
+        height: `${dims.width / 2}`,
+        width: `${dims.width}`,
+        videoId: 'LQUXuQ6Zd9w',
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
+
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+var done = false;
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+        setTimeout(stopVideo, 6000);
+        done = true;
+    }
+}
+function stopVideo() {
+    player.stopVideo();
+}
+
+$(watchForm);
