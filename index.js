@@ -2,7 +2,7 @@
 
 const apiKey = 'AIzaSyCd-3t5NPb4Zve-TPyz8mR9CbGXBnplFJ4';
 const searchURL = 'https://www.googleapis.com/youtube/v3/search';
-
+// Used for retrieving the requested videoId
 let vidId = '1';
 
 
@@ -34,7 +34,7 @@ function determineVideoSize() {
     }
 
 }
-
+//Display the requested song
 function displayResults(responseJson) {
     console.log(responseJson);
     vidId = responseJson.items[0].id.videoId.toString();
@@ -83,10 +83,8 @@ function watchForm() {
     });
 }
 
-function loadVideo (id){
-    player.loadVideoById({videoId:id,
-        startSeconds:0,
-        endSeconds:500});
+function loadVideo(id) {
+    player.loadVideoById({ videoId: id });
 }
 
 
