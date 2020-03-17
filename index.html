@@ -30,13 +30,24 @@
     </header>
 
     <section>
-        <form id="js-form">
-            <label for="search-artist">Search Song</label>
+        <form id="js-form-artist">
+            <label for="search-artist">Search Artist</label>
             <input type="text" name="search-artist" id="js-search-artist" required>
             <input type="submit" value="Go!">
         </form>
     </section>
 
+    <section>
+        <form id="js-form-song">
+            <label for="search-song">Search Song</label>
+            <input type="text" name="search-song" id="js-search-song" required>
+            <input type="submit" value="Go!">
+        </form>
+    </section>
+
+    <section>
+        <div id="js-info" class="js-info"></div>
+    </section>
     <!--This is where the video will be displayed-->
     <section>
         <div id="player" class="hidden"></div>
@@ -46,4 +57,4 @@
     <script src="index.js"></script>
 </body>
 
-</html>
+</html> 

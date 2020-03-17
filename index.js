@@ -1,7 +1,8 @@
 `use strict`
 
 const apiKey = 'AIzaSyCd-3t5NPb4Zve-TPyz8mR9CbGXBnplFJ4';
-const searchURL = 'https://www.googleapis.com/youtube/v3/search';
+const searchYTURL = 'https://www.googleapis.com/youtube/v3/search';
+const searchTADBURL = 'https://www.theaudiodb.com/api/v1/json/1/search.php'
 // Used for retrieving the requested videoId
 let vidId = '1';
 
@@ -35,12 +36,21 @@ function determineVideoSize() {
 
 }
 //Display the requested song
-function displayResults(responseJson) {
+function displayVideo(responseJson) {
     console.log(responseJson);
     vidId = responseJson.items[0].id.videoId.toString();
     loadVideo(vidId);
     $('#player').removeClass('hidden');
 };
+
+function displayArtistInfo (responseJson){
+    $('#js-info').empty();
+    $('#js-info').append(
+        `<img src="${responseJson.artists[0].strArtistBanner.toString()}" alt="Artist Banner">
+        <h2>${responseJson.artists[0].strArtist.toString()}</h2>
+        <p>${responseJson.artists[0].strBiographyEN.toString()}</p>`
+    );
+}
 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -56,10 +66,8 @@ function getYouTubeVideoId(query, maxResults) {
         maxResults,
         type: 'video'
     };
-    const queryString = formatQueryParams(params)
-    const url = searchURL + '?' + queryString;
-
-    console.log(url);
+    const queryString = formatQueryParams(params);
+    const url = searchYTURL + '?' + queryString;
 
     fetch(url)
         .then(response => {
@@ -68,18 +76,46 @@ function getYouTubeVideoId(query, maxResults) {
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayResults(responseJson))
+        .then(responseJson => displayVideo(responseJson))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
 }
 
 
+function getArtistInfo(query) {
+    const params = {
+        s: query
+    };
+    const queryString = formatQueryParams(params);
+    const url = searchTADBURL + '?' + queryString;
+    console.log(url);
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then(responseJson => displayArtistInfo(responseJson))
+        .catch(err => {
+            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+        });
+
+}
+
+
+
 function watchForm() {
-    $('form').submit(event => {
+    $('#js-form-artist').submit(event => {
         event.preventDefault();
         const searchArtist = $('#js-search-artist').val();
-        getYouTubeVideoId(searchArtist, 1);
+        getArtistInfo(searchArtist);
+    });
+    $('#js-form-song').submit(event => {
+        event.preventDefault();
+        const searchSong = $('#js-search-song').val();
+        getYouTubeVideoId(searchSong, 1);
     });
 }
 
