@@ -114,7 +114,6 @@ function getArtistInfo(query) {
 
 function getLyrics(){
     const url = searchLyricsOHVURL + $('#js-search-artist').val().replace(' ','%20') + '/' + $('#js-search-song').val().replace(' ','%20');
-    alert(url);
     fetch(url)
         .then(response => {
             if (response.ok) {
