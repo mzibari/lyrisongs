@@ -3,6 +3,7 @@
 const apiKey = 'AIzaSyCd-3t5NPb4Zve-TPyz8mR9CbGXBnplFJ4';
 const searchYTURL = 'https://www.googleapis.com/youtube/v3/search';
 const searchTADBURL = 'https://www.theaudiodb.com/api/v1/json/1/search.php'
+const searchLyricsOHVURL = 'https://api.lyrics.ovh/v1/';
 // Used for retrieving the requested videoId
 let vidId = '1';
 
@@ -50,6 +51,13 @@ function displayArtistInfo (responseJson){
         <h2>${responseJson.artists[0].strArtist.toString()}</h2>
         <p>${responseJson.artists[0].strBiographyEN.toString()}</p>`
     );
+}
+
+function displayLyrics(responseJson){
+    $('#js-lyrics').empty();
+    $('#js-lyrics ').append(
+    `<p>${responseJson.lyrics}</p>`);
+    
 }
 
 function formatQueryParams(params) {
@@ -104,6 +112,22 @@ function getArtistInfo(query) {
 
 }
 
+function getLyrics(){
+    const url = searchLyricsOHVURL + $('#js-search-artist').val().replace(' ','%20') + '/' + $('#js-search-song').val().replace(' ','%20');
+    alert(url);
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then(responseJson => displayLyrics(responseJson))
+        .catch(err => {
+            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+        });
+}
+
 
 
 function watchForm() {
@@ -115,7 +139,9 @@ function watchForm() {
     $('#js-form-song').submit(event => {
         event.preventDefault();
         const searchSong = $('#js-search-song').val();
+        getLyrics();
         getYouTubeVideoId(searchSong, 1);
+        
     });
 }
 
