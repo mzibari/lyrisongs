@@ -51,13 +51,15 @@ function displayArtistInfo (responseJson){
         <h2>${responseJson.artists[0].strArtist.toString()}</h2>
         <p>${responseJson.artists[0].strBiographyEN.toString()}</p>`
     );
+    $('#info').removeClass('hidden');
 }
 
 function displayLyrics(responseJson){
     $('#js-lyrics').empty();
     $('#js-lyrics ').append(
-    `<p>${responseJson.lyrics}</p>`);
-    
+    `<h2>Lyrics</h2>
+    <p>${responseJson.lyrics}</p>`);
+    $('#lyrics').removeClass('hidden');
 }
 
 function formatQueryParams(params) {
@@ -76,7 +78,7 @@ function getYouTubeVideoId(query, maxResults) {
     };
     const queryString = formatQueryParams(params);
     const url = searchYTURL + '?' + queryString;
-
+    console.log(url);
     fetch(url)
         .then(response => {
             if (response.ok) {

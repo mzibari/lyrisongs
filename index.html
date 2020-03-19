@@ -7,6 +7,8 @@
     <title>LyriSongs</title>
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barrio&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -29,30 +31,30 @@
         <h1>Find The Artists and Songs You Love</h1>
     </header>
 
-    <section>
+    <section class="background">
         <form id="js-form-artist">
             <label for="search-artist">Search Artist</label>
-            <input type="text" name="search-artist" id="js-search-artist" required>
-            <input type="submit" value="Go!">
+            <input type="text" name="search-artist" id="js-search-artist" class="js-search-artist" required>
+            <input type="submit" class="button" value="Go!">
         </form>
     </section>
 
-    <section>
+    <section class="background">
         <form id="js-form-song">
             <label for="search-song">Search Song</label>
-            <input type="text" name="search-song" id="js-search-song" required>
-            <input type="submit" value="Go!">
+            <input type="text" name="search-song" id="js-search-song" class="js-search-song" required>
+            <input type="submit" class="button" value="Go!">
         </form>
     </section>
 
-    <section>
+    <section id="info" class="background hidden">
         <div id="js-info" class="js-info"></div>
     </section>
     <!--This is where the video will be displayed-->
     <section>
         <div id="player" class="hidden"></div>
     </section>
-    <section>
+    <section id="lyrics" class="background hidden">
         <div id="js-lyrics" class="js-lyrics"></div>
     </section>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
