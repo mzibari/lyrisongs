@@ -8,6 +8,7 @@
 html {
     scroll-behavior: smooth;
     background-color: #EAE7DC;
+    padding-bottom: 40px;
 }
 
 .hidden{
@@ -39,8 +40,13 @@ footer {
     width: 100%;
     padding: 0 5px 0 5px;
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
     background-color: #EAE7DC;
+}
+
+.js-form-song-section{
+    opacity: 0.0;
+    transition: 0.2s;
 }
 
 img{
@@ -61,7 +67,7 @@ img{
     color: #E85A4F;
     border-bottom: 1px solid #d8c3a5;
     margin: 0;
-    background-color: #EAE7DC;
+    background-color: rgba(234,231,220,0.9);;
     position: relative;
     width: 96vw;
 }
@@ -101,6 +107,7 @@ h1, h2{
     margin-right: 5%;
     text-align: center;
 }
+
 
 @media screen and (min-width: 480px) {}
 

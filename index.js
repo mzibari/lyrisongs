@@ -135,6 +135,7 @@ function watchForm() {
     $('#js-form-artist').submit(event => {
         event.preventDefault();
         const searchArtist = $('#js-search-artist').val();
+        document.getElementById("js-form-song-section").style.opacity = 1.0;
         getArtistInfo(searchArtist);
     });
     $('#js-form-song').submit(event => {
