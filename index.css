@@ -1,13 +1,21 @@
+:root {
+    --main-bg-color: #EDEAE5;
+    --main-txt-color: #026670;
+    --main-sections-color: #9FEDD7;
+    --headers-color: #026670;
+    --buttons-nav-color: #FCE181;
+    --nav-foot-txt-color: #026670;
+}
 *{
     margin: 0;
     box-sizing: border-box;
-    color: #8E8D8A;
-    font-family: 'Crimson Pro', serif;
+    color: var(--main-txt-color);
+    font-family: 'Cinzel', serif;
 }
 
 html {
     scroll-behavior: smooth;
-    background-color: #EAE7DC;
+    background-color: var(--main-bg-color);
     padding-bottom: 40px;
 }
 
@@ -19,30 +27,33 @@ html {
 
 .nav {
     text-align: right;
-    color: #E85A4F;
+    color: var(--main-txt-color);
     height: 40px;
     line-height: 40px;
-    border-bottom: 1px solid #d8c3a5;
     width: 100%;
     padding: 0 5px 0 5px;
+    background-color: var(--buttons-nav-color);
 }
 
 footer {
     text-align: right;
-    color: #E85A4F;
+    color: var(--nav-foot-txt-color);
     height: 40px;
     line-height: 40px;
-    border-top: 1px solid #d8c3a5;
+    border-top: 1px solid var(--headers-color);
     width: 100%;
     padding: 0 5px 0 5px;
     position: fixed;
     bottom: 0px;
-    background-color: #EAE7DC;
+    background-color: var(--buttons-nav-color);
 }
 
 .hidden{
     opacity: 0.0;
     transition: 1s;
+}
+label{
+    display: block;
 }
 
 img{
@@ -61,10 +72,10 @@ img{
     text-decoration: none;
     line-height: 50px;
     display: block;
-    color: #E85A4F;
-    border-bottom: 1px solid #d8c3a5;
+    color: var(--nav-foot-txt-color);
+    border-bottom: 1px solid var(--headers-color);
     margin: 0;
-    background-color: rgba(234,231,220,0.9);;
+    background-color: var(--buttons-nav-color);
     position: relative;
     width: 96vw;
 }
@@ -81,24 +92,30 @@ h1{
     text-align: center;
     margin-bottom: 20px;
     margin-top: 20px;
-}
-
-h1, h2{
-    color: #E85A4F;
     font-family: 'Barrio', cursive;
 }
 
+h1, h2{
+    color: var(--headers-color);
+}
+
 .search, .button{
-    border-radius: 15%;
+    border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    cursor: pointer;
+}
+
+.button{
+    width: 60px;
+    background-color: var(--buttons-nav-color);
 }
 
 .background{
     width: 90%;
     padding: 5px;
     border-radius: 5px;
-    background-color: rgba(216,195,165, 0.4);
+    background-color: var(--main-sections-color);
     margin-bottom: 10px;
     margin-left: 5%;
     margin-right: 5%;
