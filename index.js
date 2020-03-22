@@ -58,7 +58,7 @@ function displayLyrics(responseJson){
     $('#js-lyrics').empty();
     $('#js-lyrics ').append(
     `<h2>Lyrics</h2>
-    <p>${responseJson.lyrics}</p>`);
+    <p>${responseJson.lyrics.replace(/\n/g, "<br/>")}</p>`);
     $('#lyrics').removeClass('hidden');
 }
 
@@ -146,7 +146,7 @@ function watchForm() {
     });
 }
 
-function loadVideo(id) {
+/*function loadVideo(id) {
     player.loadVideoById({ videoId: id });
 }
 
@@ -177,7 +177,7 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     event.target.playVideo();
 }
-
+*/
 
 
 
