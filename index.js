@@ -41,7 +41,7 @@ function displayVideo(responseJson) {
     console.log(responseJson);
     vidId = responseJson.items[0].id.videoId.toString();
     loadVideo(vidId);
-    $('#player').removeClass('hidden');
+    transitionElement('player');
 };
 
 function displayArtistInfo (responseJson){
@@ -51,7 +51,7 @@ function displayArtistInfo (responseJson){
         <h2>${responseJson.artists[0].strArtist.toString()}</h2>
         <p>${responseJson.artists[0].strBiographyEN.toString()}</p>`
     );
-    $('#info').removeClass('hidden');
+    transitionElement('info');
 }
 
 function displayLyrics(responseJson){
@@ -59,7 +59,7 @@ function displayLyrics(responseJson){
     $('#js-lyrics ').append(
     `<h2>Lyrics</h2>
     <p>${responseJson.lyrics.replace(/\n/g, "<br/>")}</p>`);
-    $('#lyrics').removeClass('hidden');
+    transitionElement('lyrics');
 }
 
 function formatQueryParams(params) {
@@ -129,13 +129,16 @@ function getLyrics(){
         });
 }
 
+function transitionElement (element){
+    document.getElementById(element).style.opacity = 1.0;
+}
 
 
 function watchForm() {
     $('#js-form-artist').submit(event => {
         event.preventDefault();
         const searchArtist = $('#js-search-artist').val();
-        document.getElementById("js-form-song-section").style.opacity = 1.0;
+        transitionElement("js-form-song-section")
         getArtistInfo(searchArtist);
     });
     $('#js-form-song').submit(event => {

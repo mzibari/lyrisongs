@@ -11,10 +11,6 @@ html {
     padding-bottom: 40px;
 }
 
-.hidden{
-    display: none;
-}
-
 .app-name{
     float: left;
     margin: auto;
@@ -44,13 +40,14 @@ footer {
     background-color: #EAE7DC;
 }
 
-.js-form-song-section{
+.hidden{
     opacity: 0.0;
-    transition: 0.2s;
+    transition: 1s;
 }
 
 img{
     width: 90%;
+    border-radius: 10px;
 }
 
 .menu {
