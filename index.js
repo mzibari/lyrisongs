@@ -36,6 +36,10 @@ function determineVideoSize() {
     }
 
 }
+
+function transitionElement(element) {
+    document.getElementById(element).style.opacity = 1.0;
+}
 //Display the requested song
 function displayVideo(responseJson) {
     console.log(responseJson);
@@ -44,20 +48,22 @@ function displayVideo(responseJson) {
     transitionElement('player');
 };
 
-function displayArtistInfo (responseJson){
+function displayArtistInfo(responseJson) {
     $('#js-info').empty();
     $('#js-info').append(
         `<img src="${responseJson.artists[0].strArtistBanner.toString()}" alt="Artist Banner">
         <h2>${responseJson.artists[0].strArtist.toString()}</h2>
         <p>${responseJson.artists[0].strBiographyEN.toString()}</p>`
     );
+    transitionElement("js-form-song-section");
+    transitionElement('contact-info');
     transitionElement('info');
 }
 
-function displayLyrics(responseJson){
+function displayLyrics(responseJson) {
     $('#js-lyrics').empty();
     $('#js-lyrics ').append(
-    `<h2>Lyrics</h2>
+        `<h2>Lyrics</h2>
     <p>${responseJson.lyrics.replace(/\n/g, "<br/>")}</p>`);
     transitionElement('lyrics');
 }
@@ -109,13 +115,13 @@ function getArtistInfo(query) {
         })
         .then(responseJson => displayArtistInfo(responseJson))
         .catch(err => {
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+            $('#js-error-message').text(`Something went wrong: artist not found`);
         });
 
 }
 
-function getLyrics(){
-    const url = searchLyricsOHVURL + $('#js-search-artist').val().replace(' ','%20') + '/' + $('#js-search-song').val().replace(' ','%20');
+function getLyrics() {
+    const url = searchLyricsOHVURL + $('#js-search-artist').val().replace(' ', '%20') + '/' + $('#js-search-song').val().replace(' ', '%20');
     fetch(url)
         .then(response => {
             if (response.ok) {
@@ -129,29 +135,23 @@ function getLyrics(){
         });
 }
 
-function transitionElement (element){
-    document.getElementById(element).style.opacity = 1.0;
-}
 
 
 function watchForm() {
     $('#js-form-artist').submit(event => {
         event.preventDefault();
         const searchArtist = $('#js-search-artist').val();
-        transitionElement("js-form-song-section")
         getArtistInfo(searchArtist);
-        transitionElement('contact-info');
     });
     $('#js-form-song').submit(event => {
         event.preventDefault();
         const searchSong = $('#js-search-song').val();
         getLyrics();
         getYouTubeVideoId(searchSong, 1);
-        transitionElement('contact-info');
     });
 }
 
-/*function loadVideo(id) {
+function loadVideo(id) {
     player.loadVideoById({ videoId: id });
 }
 
@@ -182,7 +182,7 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     event.target.playVideo();
 }
-*/
+
 
 
 

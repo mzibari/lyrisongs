@@ -103,6 +103,10 @@ h1 {
     font-family: 'Barrio', cursive;
 }
 
+h2{
+    margin-bottom: 10px;
+}
+
 h1, h2 {
     color: var(--headers-color);
 }
@@ -127,6 +131,10 @@ h1, h2 {
     margin-left: 5%;
     margin-right: 5%;
     padding: 10px;
+    text-align: center;
+}
+
+#js-error-message{
     text-align: center;
 }
 
@@ -165,55 +173,45 @@ ul {
         font-size: 48px;
         line-height: 52px;
     }
-
     h2 {
         font-size: 32px;
+        margin-bottom: 15px;
     }
-
     html {
         font-size: 20px;
         line-height: 30px;
     }
-
     .search, .button {
         height: 50px;
         font-size: 20px;
     }
-
     nav {
         height: 60px;
     }
-
-    .nav{
+    .nav {
         width: 100%;
     }
-
     #app-name {
         padding-top: 5px;
         margin-left: 1.5rem;
     }
-
     nav label {
         display: none;
     }
-
-    label{
+    label {
         display: inline-block;
     }
-
     .menu {
         display: flex;
         justify-content: flex-end;
     }
-
     .menu a {
         width: 100px;
         border: 0;
         background-color: rgba(0, 0, 0, 0);
         cursor: pointer;
     }
-
-    .background{
+    .background {
         padding: 15px;
         width: 80%;
         margin-left: 10%;
@@ -221,4 +219,24 @@ ul {
     }
 }
 
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+    .background {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+        height: initial;
+    }
+    .content {
+        padding: 40px;
+    }
+    h1 {
+        margin-bottom: 3%;
+    }
+    h2{
+        margin-bottom: 20px;
+    }
+    .logos, .contact {
+        width: 50px;
+        height: 50px;
+    }
+}

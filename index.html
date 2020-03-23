@@ -37,6 +37,10 @@
             <input type="submit" class="button js-search-artist-button" value="Go!">
         </form>
     </section>
+    
+    <section>
+        <div id="js-error-message"></div>
+    </section>
 
     <section class="background hidden" id="js-form-song-section">
         <form id="js-form-song">
@@ -46,16 +50,19 @@
         </form>
     </section>
 
-    <section id="info" class="background hidden">
+    <section id="info" class="background content hidden">
         <div id="js-info" class="js-info"></div>
     </section>
+
     <!--This is where the video will be displayed-->
-    <section>
-        <div id="player" class="hidden"></div>
+    <section class=" hidden">
+        <div id="player"></div>
     </section>
-    <section id="lyrics" class="background hidden">
+
+    <section id="lyrics" class="background content hidden">
         <div id="js-lyrics" class="js-lyrics"></div>
     </section>
+
     <footer id="contact-info" class="hidden-slow">
         <ul class="contact-ul">
             <li>
