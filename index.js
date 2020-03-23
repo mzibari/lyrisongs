@@ -140,13 +140,14 @@ function watchForm() {
         const searchArtist = $('#js-search-artist').val();
         transitionElement("js-form-song-section")
         getArtistInfo(searchArtist);
+        transitionElement('contact-info');
     });
     $('#js-form-song').submit(event => {
         event.preventDefault();
         const searchSong = $('#js-search-song').val();
         getLyrics();
         getYouTubeVideoId(searchSong, 1);
-        
+        transitionElement('contact-info');
     });
 }
 
