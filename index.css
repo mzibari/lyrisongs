@@ -6,7 +6,8 @@
     --buttons-nav-color: #FCE181;
     --nav-foot-txt-color: #026670;
 }
-*{
+
+* {
     margin: 0;
     box-sizing: border-box;
     color: var(--main-txt-color);
@@ -18,13 +19,13 @@ html {
     background-color: var(--main-bg-color);
 }
 
-.app-name{
+.app-name {
     float: left;
     margin: auto;
     font-size: 1.4em;
 }
 
-.nav {
+nav {
     text-align: right;
     color: var(--main-txt-color);
     height: 40px;
@@ -33,6 +34,7 @@ html {
     padding: 0 5px 0 5px;
     background-color: var(--buttons-nav-color);
 }
+
 /*
 footer {
     text-align: right;
@@ -47,21 +49,22 @@ footer {
     background-color: var(--buttons-nav-color);
 }*/
 
-.hidden{
+.hidden {
     opacity: 0.0;
     transition: 1s;
 }
-.hidden-slow{
+
+.hidden-slow {
     opacity: 0.0;
     transition: 1s;
     transition-delay: 3s;
 }
 
-label{
+label {
     display: block;
 }
 
-div img{
+div img {
     width: 90%;
     border-radius: 10px;
 }
@@ -93,42 +96,42 @@ div img{
     display: block;
 }
 
-h1{
+h1 {
     text-align: center;
     margin-bottom: 20px;
     margin-top: 20px;
     font-family: 'Barrio', cursive;
 }
 
-h1, h2{
+h1, h2 {
     color: var(--headers-color);
 }
 
-.search, .button{
+.search, .button {
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
     cursor: pointer;
 }
 
-.button{
+.button {
     width: 60px;
     background-color: var(--buttons-nav-color);
 }
 
-.background{
+.background {
     width: 90%;
-    padding: 5px;
     border-radius: 5px;
     background-color: var(--main-sections-color);
     margin-bottom: 10px;
     margin-left: 5%;
     margin-right: 5%;
+    padding: 10px;
     text-align: center;
 }
 
-footer{
-    border-top: 1px solid rgb(128, 82,128);
+footer {
+    border-top: 1px solid rgb(128, 82, 128);
     padding-top: 5px;
     background-color: var(--buttons-nav-color);
 }
@@ -145,20 +148,77 @@ footer ul {
     margin-top: 10px;
 }
 
-ul{
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#design{
+#design {
     font-size: 10px;
     text-align: center;
     padding: 10px;
 }
 
 @media screen and (min-width: 480px) {
-   
+    h1 {
+        font-size: 48px;
+        line-height: 52px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    html {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .search, .button {
+        height: 50px;
+        font-size: 20px;
+    }
+
+    nav {
+        height: 60px;
+    }
+
+    .nav{
+        width: 100%;
+    }
+
+    #app-name {
+        padding-top: 5px;
+        margin-left: 1.5rem;
+    }
+
+    nav label {
+        display: none;
+    }
+
+    label{
+        display: inline-block;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .menu a {
+        width: 100px;
+        border: 0;
+        background-color: rgba(0, 0, 0, 0);
+        cursor: pointer;
+    }
+
+    .background{
+        padding: 15px;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 }
 
 @media screen and (min-width: 768px) {}
