@@ -103,7 +103,7 @@ h1 {
     font-family: 'Barrio', cursive;
 }
 
-h2{
+h2 {
     margin-bottom: 10px;
 }
 
@@ -134,7 +134,21 @@ h1, h2 {
     text-align: center;
 }
 
-#js-error-message{
+.search-section {
+    width: 90%;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px;
+    text-align: center;
+}
+
+#video {
+    width: 100%;
+    text-align: center;
+}
+
+#js-error-message {
     text-align: center;
 }
 
@@ -232,7 +246,7 @@ ul {
     h1 {
         margin-bottom: 3%;
     }
-    h2{
+    h2 {
         margin-bottom: 20px;
     }
     .logos, .contact {

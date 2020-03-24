@@ -30,7 +30,7 @@ function determineVideoSize() {
     }
     // Determining the video size based on desktop viewport
     else {
-        dims.width = 640;
+        dims.width = 780;
         dims.height = 390;
         return dims;
     }
@@ -45,7 +45,7 @@ function displayVideo(responseJson) {
     console.log(responseJson);
     vidId = responseJson.items[0].id.videoId.toString();
     loadVideo(vidId);
-    transitionElement('player');
+    transitionElement('video');
 };
 
 function displayArtistInfo(responseJson) {
