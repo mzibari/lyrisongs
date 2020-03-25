@@ -160,11 +160,13 @@ function getLyrics() {
 function watchForm() {
     $('#js-form-artist').submit(event => {
         event.preventDefault();
+        $('#js-error-message').empty();
         const searchArtist = $('#js-search-artist').val();
         getArtistInfo(searchArtist);
     });
     $('#js-form-song').submit(event => {
         event.preventDefault();
+        $('#js-error-message').empty();
         const searchSong = $('#js-search-artist').val() + ' ' + $('#js-search-song').val();
         getLyrics();
         getYouTubeVideoId(searchSong, 1);
