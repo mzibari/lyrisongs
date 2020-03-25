@@ -35,20 +35,6 @@ nav {
     background-color: var(--buttons-nav-color);
 }
 
-/*
-footer {
-    text-align: right;
-    color: var(--nav-foot-txt-color);
-    height: 40px;
-    line-height: 40px;
-    border-top: 1px solid var(--headers-color);
-    width: 100%;
-    padding: 0 5px 0 5px;
-    position: relative;
-    bottom: 0px;
-    background-color: var(--buttons-nav-color);
-}*/
-
 .hidden {
     opacity: 0.0;
     transition: 1s;
@@ -143,7 +129,7 @@ h1, h2 {
     text-align: center;
 }
 
-.infoListBio{
+.infoListBio {
     text-align: left;
 }
 
