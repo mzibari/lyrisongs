@@ -9,7 +9,7 @@ let vidId = '1';
 
 
 
-// This function returns the width and height of the viewport
+// Return the width and height of the viewport
 function determineVideoSize() {
     var test = document.createElement("div");
 
@@ -37,10 +37,13 @@ function determineVideoSize() {
 
 }
 
+// Transition elements smoothly into view
 function transitionElement(element) {
     document.getElementById(element).style.opacity = 1.0;
 }
-//Display the requested song
+
+
+// Display the requested song
 function displayVideo(responseJson) {
     console.log(responseJson);
     vidId = responseJson.items[0].id.videoId.toString();
@@ -48,11 +51,14 @@ function displayVideo(responseJson) {
     transitionElement('video');
 };
 
+// Return the first two parts of a bio returned by api request
+// The bio that's returned by api is usually very long
 function returnPartOfBio(responseJson) {
     const bio = responseJson.artists[0].strBiographyEN.toString().split('.');
     return (bio[0] + '. ' + bio[1] + '.');
 }
 
+// Display info about the artist
 function displayArtistInfo(responseJson) {
     $('#js-info').empty();
     $('#js-info').append(
@@ -71,6 +77,7 @@ function displayArtistInfo(responseJson) {
     transitionElement('info');
 }
 
+// Display lyrics of the song
 function displayLyrics(responseJson) {
     $('#js-lyrics').empty();
     $('#js-lyrics ').append(
@@ -79,12 +86,14 @@ function displayLyrics(responseJson) {
     transitionElement('lyrics');
 }
 
+// Format the query string to the appropriate format in order for the api to understand 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
 }
 
+// YouTube API. Get YouTube video ID, the ID will be used to request the video to be displayed
 function getYouTubeVideoId(query, maxResults) {
     const params = {
         key: apiKey,
@@ -109,7 +118,7 @@ function getYouTubeVideoId(query, maxResults) {
         });
 }
 
-
+// The ADB API. Get the artist info
 function getArtistInfo(query) {
     const params = {
         s: query
@@ -131,6 +140,7 @@ function getArtistInfo(query) {
 
 }
 
+// Lyrics OHV API. Get the lyrics
 function getLyrics() {
     const url = searchLyricsOHVURL + $('#js-search-artist').val().replace(' ', '%20') + '/' + $('#js-search-song').val().replace(' ', '%20');
     fetch(url)
@@ -146,8 +156,7 @@ function getLyrics() {
         });
 }
 
-
-
+// Callback function
 function watchForm() {
     $('#js-form-artist').submit(event => {
         event.preventDefault();
@@ -162,6 +171,7 @@ function watchForm() {
     });
 }
 
+// Load YouTube Video
 function loadVideo(id) {
     player.loadVideoById({ videoId: id });
 }
