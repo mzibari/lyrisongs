@@ -48,12 +48,23 @@ function displayVideo(responseJson) {
     transitionElement('video');
 };
 
+function returnPartOfBio(responseJson) {
+    const bio = responseJson.artists[0].strBiographyEN.toString().split('.');
+    return (bio[0] + '. ' + bio[1] + '.');
+}
+
 function displayArtistInfo(responseJson) {
     $('#js-info').empty();
     $('#js-info').append(
         `<img src="${responseJson.artists[0].strArtistBanner.toString()}" alt="Artist Banner">
         <h2>${responseJson.artists[0].strArtist.toString()}</h2>
-        <p>${responseJson.artists[0].strBiographyEN.toString()}</p>`
+        <p class="infoListBio">${returnPartOfBio(responseJson)}</p><br\>
+        <ul class="infoListBio">
+        <li>Formed year: ${responseJson.artists[0].intFormedYear.toString()}</li>
+        <li>Genre: ${responseJson.artists[0].strGenre.toString()}</li>
+        <li>Members: ${responseJson.artists[0].intMembers.toString()}</li>
+        <li>Country: ${responseJson.artists[0].strCountry.toString()}</li>
+        </ul>`
     );
     transitionElement("js-form-song-section");
     transitionElement('contact-info');

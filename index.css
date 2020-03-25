@@ -143,6 +143,10 @@ h1, h2 {
     text-align: center;
 }
 
+.infoListBio{
+    text-align: left;
+}
+
 #video {
     width: 100%;
     text-align: center;
