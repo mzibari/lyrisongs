@@ -156,7 +156,7 @@ function watchForm() {
     });
     $('#js-form-song').submit(event => {
         event.preventDefault();
-        const searchSong = $('#js-search-song').val() + ' ' + $('#js-search-artist').val();
+        const searchSong = $('#js-search-artist').val() + ' ' + $('#js-search-song').val();
         getLyrics();
         getYouTubeVideoId(searchSong, 1);
     });
